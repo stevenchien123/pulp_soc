@@ -115,3 +115,6 @@ hwpe-mac-engine:
 riscv-dbg:
   commit: v0.2
   domain: [soc]
+dummy_vip:
+  commit: v1.0
+  domain: [soc]
