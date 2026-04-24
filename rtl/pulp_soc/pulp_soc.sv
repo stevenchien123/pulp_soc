@@ -981,4 +981,35 @@ module pulp_soc import dm::*; #(
     //********************************************************    
     dummy_top dummy_top_i();
 
+    //********************************************************
+    //*********************  fir HWPE   **********************
+    //******************************************************** 
+    fir_top_wrap u_fir_hwpe (
+      .clk_i(soc_clk_i),
+      .rst_ni(soc_rstn_synced_i),
+      .test_mode_i(dft_test_mode_i),
+      .// events
+      .evt_o(),
+      .// tcdm master ports
+      .tcdm_req(),
+      .tcdm_gnt(),
+      .tcdm_add(),
+      .tcdm_wen(),
+      .tcdm_be(),
+      .tcdm_data(),
+      .tcdm_r_data(),
+      .tcdm_r_valid(),
+      .// periph slave port
+      .periph_req(),
+      .periph_gnt(),
+      .periph_add(),
+      .periph_wen(),
+      .periph_be(),
+      .periph_data(),
+      .periph_id(),
+      .periph_r_data(),
+      .periph_r_valid(),
+      .periph_r_id()
+    )
+
 endmodule
