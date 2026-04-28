@@ -984,32 +984,65 @@ module pulp_soc import dm::*; #(
     //********************************************************
     //*********************  fir HWPE   **********************
     //******************************************************** 
-    fir_top_wrap u_fir_hwpe (
-      .clk_i(soc_clk_i),
-      .rst_ni(soc_rstn_synced_i),
-      .test_mode_i(dft_test_mode_i),
-      .// events
-      .evt_o(),
-      .// tcdm master ports
-      .tcdm_req(),
-      .tcdm_gnt(),
-      .tcdm_add(),
-      .tcdm_wen(),
-      .tcdm_be(),
-      .tcdm_data(),
-      .tcdm_r_data(),
-      .tcdm_r_valid(),
-      .// periph slave port
-      .periph_req(),
-      .periph_gnt(),
-      .periph_add(),
-      .periph_wen(),
-      .periph_be(),
-      .periph_data(),
-      .periph_id(),
-      .periph_r_data(),
-      .periph_r_valid(),
-      .periph_r_id()
-    )
+    // Add fir-hwpe into pulp_soc/fc/fc_hwpe.sv
+  //   // 假設 FIR 的 MP = 4
+  //   localparam FIR_MP = 4;
+
+  //   logic [FIR_MP-1:0]        fir_tcdm_req;
+  //   logic [FIR_MP-1:0][31:0]  fir_tcdm_add;
+  //   logic [FIR_MP-1:0]        fir_tcdm_wen;
+  //   logic [FIR_MP-1:0][31:0]  fir_tcdm_data;
+  //   logic [FIR_MP-1:0][3:0]   fir_tcdm_be;
+  //   logic [FIR_MP-1:0]        fir_tcdm_gnt;
+  //   logic [FIR_MP-1:0][31:0]  fir_tcdm_r_data;
+  //   logic [FIR_MP-1:0]        fir_tcdm_r_valid;
+
+  //   // 將 Interface 轉換為打散的 logic 陣列
+  // genvar i;
+  // generate
+  //   for (i = 0; i < FIR_MP; i++) begin : gen_fir_tcdm_binding
+  //     // Master (FIR) to Slave (Memory)
+  //     assign s_lint_hwpe_bus[i].req   = fir_tcdm_req[i];
+  //     assign s_lint_hwpe_bus[i].add   = fir_tcdm_add[i];
+  //     assign s_lint_hwpe_bus[i].wen   = fir_tcdm_wen[i];
+  //     assign s_lint_hwpe_bus[i].wdata = fir_tcdm_data[i];
+  //     assign s_lint_hwpe_bus[i].be    = fir_tcdm_be[i];
+      
+  //     // Slave (Memory) to Master (FIR)
+  //     assign fir_tcdm_gnt[i]     = s_lint_hwpe_bus[i].gnt;
+  //     assign fir_tcdm_r_data[i]  = s_lint_hwpe_bus[i].r_rdata;
+  //     assign fir_tcdm_r_valid[i] = s_lint_hwpe_bus[i].r_valid;
+      
+  //     // r_opc FIR 沒有用到，所以不必接 (會被系統自動 optimize 掉)
+  //   end
+  // endgenerate
+
+  //   fir_top_wrap u_fir_hwpe (
+  //     .clk_i(soc_clk_i),
+  //     .rst_ni(soc_rstn_synced_i),
+  //     .test_mode_i(dft_test_mode_i),
+  //     .// events
+  //     .evt_o(),
+  //     .// tcdm master ports
+  //     .tcdm_req(fir_tcdm_req),
+  //     .tcdm_gnt(fir_tcdm_gnt),
+  //     .tcdm_add(fir_tcdm_add),
+  //     .tcdm_wen(fir_tcdm_wen),
+  //     .tcdm_be(fir_tcdm_be),
+  //     .tcdm_data(fir_tcdm_data),
+  //     .tcdm_r_data(fir_tcdm_r_data),
+  //     .tcdm_r_valid(fir_tcdm_r_valid),
+  //     .// periph slave port
+  //     .periph_req(),
+  //     .periph_gnt(),
+  //     .periph_add(),
+  //     .periph_wen(),
+  //     .periph_be(),
+  //     .periph_data(),
+  //     .periph_id(),
+  //     .periph_r_data(),
+  //     .periph_r_valid(),
+  //     .periph_r_id()
+  //   )
 
 endmodule
