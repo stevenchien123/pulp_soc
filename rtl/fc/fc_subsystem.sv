@@ -369,6 +369,12 @@ module fc_subsystem import cv32e40p_apu_core_pkg::*; #(
       .evt_o             ( hwpe_events_o  ),
       .busy_o            (                )
     );
+
+    initial begin
+      $display("==================================================");
+      $display("[INFO] USE_HWPE == 1");
+      $display("==================================================");
+    end
   end
   else begin : no_fc_hwpe_gen
     assign hwpe_events_o = '0;
@@ -381,6 +387,12 @@ module fc_subsystem import cv32e40p_apu_core_pkg::*; #(
       assign l2_hwpe_master[ii].wdata = '0;
       assign l2_hwpe_master[ii].be    = '0;
       assign l2_hwpe_master[ii].add   = '0;
+    end
+
+    initial begin
+      $display("==================================================");
+      $display("[INFO] USE_HWPE == 0");
+      $display("==================================================");
     end
   end
 
