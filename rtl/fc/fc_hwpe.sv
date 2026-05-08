@@ -103,7 +103,7 @@ module fc_hwpe
 
   fir_top_wrap #(
     .ID  ( ID_WIDTH )
-  ) i_mac_top_wrap (
+  ) i_fir_top_wrap (
     .clk_i            ( clk_i          ),
     .rst_ni           ( rst_ni         ),
     .test_mode_i      ( test_mode_i    ),
